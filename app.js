@@ -131,13 +131,24 @@ function route() {
 
 function renderHome() {
   app.innerHTML = `
-    <section class="hero lively">
-      <span class="pill">Produit hybride</span><span class="pill">Coffret + plateforme compagnon</span>
-      <h1>Un site plus vivant, mais toujours clair et premium.</h1>
-      <p>La Focale relie découverte, achat, activation, progression et fidélité dans une seule expérience continue.</p>
-      <div class="cta-row">
-        <a class="btn" href="#/architecture">Voir l'architecture complète</a>
-        <a class="btn secondary" href="#/offres">Voir les offres</a>
+    <section class="hero lively long-block">
+      <div class="hero-grid">
+        <div>
+          <span class="pill">Produit hybride</span><span class="pill">Coffret + plateforme compagnon</span>
+          <h1>La Focale devient une vraie expérience one-page : plus longue, plus intense, plus mémorable.</h1>
+          <p>On descend dans un parcours riche : intention, architecture, transformation, preuves et passage à l'action. Le tout avec une direction visuelle forte et un vrai rythme narratif.</p>
+          <div class="cta-row">
+            <a class="btn" href="#/architecture">Explorer l'architecture</a>
+            <a class="btn secondary" href="#/offres">Voir les offres</a>
+          </div>
+        </div>
+        <aside class="card hero-orbital">
+          <h3>Le parcours en 5 temps</h3>
+          <p class="small">Une narration descendante : on scrolle, on comprend, on se projette.</p>
+          <div class="orbital-badges">
+            <span>Vente</span><span>Post-achat</span><span>Progression</span><span>Confiance</span><span>Légal</span>
+          </div>
+        </aside>
       </div>
     </section>
 
@@ -149,10 +160,50 @@ function renderHome() {
       <article class="ribbon legal">Légal</article>
     </section>
 
-    <section class="section grid grid-3">
-      ${card("Vision", "<ul class='list'><li>Le site n'est pas un substitut.</li><li>Promesse : compréhension active d'un sujet complexe.</li><li>Posture sobre, claire, premium et accessible.</li></ul>")}
-      ${card("Architecture", "<ul class='list'><li>Pages publiques de découverte.</li><li>Espace personnel comme passeport digital.</li><li>Pages sujet comme liaison entre les deux.</li></ul>")}
-      ${card("Parcours", "<ul class='list'><li>Comprendre → se projeter → décider.</li><li>Activer après achat.</li><li>Revenir, progresser, collectionner.</li></ul>")}
+    <section class="section card long-block">
+      <h2>Un manifeste clair : la connaissance doit être désirée, pas subie</h2>
+      <p>Le design s'inspire des meilleures one-pages : sections amples, respiration visuelle, contrastes assumés, micro-zones d'accroche. On ne montre pas juste un produit : on crée une ambiance où l'utilisateur a envie de rester et de continuer sa lecture.</p>
+      <div class="grid grid-3 section">
+        ${card("Vision", "<ul class='list'><li>Le site amplifie le coffret, il ne le remplace jamais.</li><li>Promesse : compréhension active d'un sujet complexe.</li><li>Style premium, vivant et mémorable.</li></ul>")}
+        ${card("Architecture", "<ul class='list'><li>Pages publiques de découverte et conversion.</li><li>Espace personnel comme passeport digital.</li><li>Pages sujet comme liaison entre physique et digital.</li></ul>")}
+        ${card("Parcours", "<ul class='list'><li>Comprendre → se projeter → décider.</li><li>Activer immédiatement après achat.</li><li>Revenir, progresser, collectionner.</li></ul>")}
+      </div>
+    </section>
+
+    <section class="section card long-block gradient-band">
+      <h2>Comment l'expérience se déploie quand on descend dans la page</h2>
+      <div class="timeline">
+        <article>
+          <h3>01 · Attirer</h3>
+          <p>Hero impactant, message fort, promesse lisible en 5 secondes.</p>
+        </article>
+        <article>
+          <h3>02 · Rassurer</h3>
+          <p>Architecture explicite, méthode claire, preuve de sérieux éditorial.</p>
+        </article>
+        <article>
+          <h3>03 · Convaincre</h3>
+          <p>Offres simples, différenciées, visualisées avec hiérarchie claire.</p>
+        </article>
+        <article>
+          <h3>04 · Activer</h3>
+          <p>Passeport digital, suivi de progression, premières actions immédiates.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section grid grid-2">
+      ${card("Pourquoi ça fonctionne", "<p>Parce qu'on combine direction artistique, lisibilité produit et tension narrative. Chaque bloc est plus grand, plus incarné, et pousse vers le bloc suivant.</p><p>Résultat : un site qui se visite comme une histoire, pas comme une simple vitrine statique.</p>", "long-block")}
+      ${card("Ce que l'utilisateur ressent", "<ul class='list'><li>Curiosité dès la première section</li><li>Clarté dans le parcours de décision</li><li>Motivation à continuer la lecture</li><li>Confiance au moment de choisir</li></ul>", "long-block")}
+    </section>
+
+    <section class="section card long-block">
+      <h2>Prêt à entrer dans l'expérience ?</h2>
+      <p>Tu peux maintenant naviguer entre les pages et garder cette énergie visuelle partout : architecture, offres, méthode, espace personnel. L'objectif : un site qu'on a envie de parcourir jusqu'en bas.</p>
+      <div class="cta-row">
+        <a class="btn" href="#/offres">Commencer maintenant</a>
+        <a class="btn secondary" href="#/methode">Voir la méthode</a>
+      </div>
     </section>
   `;
 }
@@ -171,7 +222,7 @@ function renderArchitecture() {
   app.innerHTML = `
     <section class="card">
       <h1>Architecture du site</h1>
-      <p>Voici une structure claire et colorée inspirée de ton schéma : du parcours de vente jusqu'aux pages de confiance et légales.</p>
+      <p>Structure inspirée de ton schéma : une boucle complète de la vente à la fidélisation, avec de la couleur pour rendre chaque bloc instantanément lisible.</p>
       <div class="arch-grid section">${items}</div>
     </section>
   `;
@@ -181,7 +232,7 @@ function renderCoffret() {
   app.innerHTML = `
     <section class="card">
       <h1>Le coffret : centre de gravité de l'expérience</h1>
-      <p>Le coffret porte la découverte initiale, la matérialité et la valeur perçue premium. Le site confirme et amplifie cette valeur sans la déplacer.</p>
+      <p>Le coffret porte la découverte initiale, la matérialité et la valeur perçue premium. Le site amplifie cette valeur avec des rappels visuels et des actions simples.</p>
       <div class="grid grid-2 section">
         ${card("Contenu du coffret", "<ul class='list'><li>Sujet géopolitique structuré</li><li>Supports de lecture/manipulation</li><li>Passeport et logique de validation</li></ul>", "accent-soft")}
         ${card("Rôle du digital", "<ul class='list'><li>Tracer le parcours</li><li>Valider étapes et progression</li><li>Installer un retour dans le temps</li></ul>", "accent-soft")}
@@ -193,7 +244,7 @@ function renderPlatform() {
   app.innerHTML = `
     <section class="card">
       <h1>La plateforme : continuité personnelle</h1>
-      <p>L'espace digital agit comme un passeport : il montre ce qui est commencé, validé, complété, et ce qui reste à explorer.</p>
+      <p>L'espace digital agit comme un passeport vivant : il montre ce qui est commencé, validé, complété, et ce qui reste à explorer.</p>
       <div class="grid grid-2 section">
         ${card("Fonctionnalités MVP", "<ul class='list'><li>Profil/passeport</li><li>Suivi de progression</li><li>Validation d'étapes</li><li>Première mécanique de retour</li></ul>")}
         ${card("Engagement maîtrisé", "<ul class='list'><li>Badges et points symboliques</li><li>Défis hebdo courts</li><li>Pas de sur-gamification</li></ul>")}
@@ -240,11 +291,11 @@ function renderOffers() {
   app.innerHTML = `
     <section class="card">
       <h1>Offres / S'abonner</h1>
-      <p>Page de conversion structurée : elle transforme l'intérêt en décision sans réduire le produit à un achat isolé.</p>
+      <p>Page de conversion structurée : elle transforme l'intérêt en décision, sans réduire le produit à un simple achat ponctuel.</p>
       <div class="grid grid-3 section">
-        ${card("Essentiel", "<p class='kpi'>39€</p><p>1 coffret + accès plateforme compagnon</p>", "pricing")}
-        ${card("Continuité", "<p class='kpi'>109€</p><p>3 coffrets + suivi progression + défis hebdo</p>", "pricing")}
-        ${card("Collection", "<p class='kpi'>199€</p><p>6 coffrets + logique de série et badges symboliques</p>", "pricing")}
+        ${card("Essentiel", "<p class='kpi'>39€</p><p>1 coffret + accès plateforme compagnon</p><p class='small'>Idéal pour découvrir la méthode.</p>", "pricing")}
+        ${card("Continuité", "<p class='kpi'>109€</p><p>3 coffrets + suivi progression + défis hebdo</p><p class='small'>Le meilleur équilibre rythme / valeur.</p>", "pricing featured")}
+        ${card("Collection", "<p class='kpi'>199€</p><p>6 coffrets + logique de série et badges symboliques</p><p class='small'>Pour ancrer une routine forte.</p>", "pricing")}
       </div>
     </section>`;
 }
@@ -254,7 +305,7 @@ function renderMethod() {
     <section class="card">
       <h1>Méthode / Notre approche</h1>
       <div class="grid grid-2 section">
-        ${card("Principes UX", "<ul class='list'><li>Clarté avant spectaculaire</li><li>Sobriété engageante</li><li>Action visible sans agitation</li></ul>")}
+        ${card("Principes UX", "<ul class='list'><li>Clarté avant confusion, même avec plus de folie visuelle</li><li>Signaux colorés pour guider l'œil</li><li>Action visible sans surcharge</li></ul>")}
         ${card("Posture de marque", "<ul class='list'><li>Compréhension plutôt que commentaire</li><li>Pédagogie adulte, jamais scolaire</li><li>Premium par la qualité d'ensemble</li></ul>")}
       </div>
     </section>`;
