@@ -1,5 +1,6 @@
 const navItems = [
   ["/", "Accueil"],
+  ["/architecture", "Architecture"],
   ["/coffret", "Le coffret"],
   ["/plateforme", "La plateforme"],
   ["/sujets", "Les sujets"],
@@ -30,6 +31,58 @@ const data = {
     reward: "Badge symbolique + point de continuité",
     status: "Ouvert jusqu'à dimanche",
   },
+  architecture: [
+    {
+      key: "vente",
+      label: "Vente",
+      points: [
+        "Landing / précommande",
+        "Offre claire (12 mois, 6 mois, mensuel)",
+        "Checkout rassurant",
+        "Page merci avec prochaine action",
+      ],
+    },
+    {
+      key: "postachat",
+      label: "Post achat",
+      points: [
+        "Start : mode d'emploi ultra simple",
+        "Profil : tableau de bord personnel",
+        "Gestion abonnement fluide",
+      ],
+    },
+    {
+      key: "produit",
+      label: "Vie du produit",
+      points: [
+        "Passeport digital (tampons/progression)",
+        "Défis hebdo courts",
+        "Débat cadré mensuel",
+        "Badges et récompenses sobres",
+        "Parrainage cohérent",
+      ],
+    },
+    {
+      key: "confiance",
+      label: "Confiance",
+      points: [
+        "Méthode transparente",
+        "FAQ utile",
+        "À propos clair",
+        "Contact direct",
+      ],
+    },
+    {
+      key: "legal",
+      label: "Légal",
+      points: [
+        "CGV",
+        "Mentions légales",
+        "Confidentialité / RGPD",
+        "Retours et remboursements",
+      ],
+    },
+  ],
 };
 
 const app = document.getElementById("app");
@@ -48,8 +101,8 @@ function renderNav() {
   navItems.forEach(([path, label]) => nav.appendChild(link(path, label)));
 }
 
-function card(title, content) {
-  return `<article class="card"><h3>${title}</h3>${content}</article>`;
+function card(title, content, className = "") {
+  return `<article class="card ${className}"><h3>${title}</h3>${content}</article>`;
 }
 
 function route() {
@@ -63,6 +116,7 @@ function route() {
 
   const pages = {
     "/": renderHome,
+    "/architecture": renderArchitecture,
     "/coffret": renderCoffret,
     "/plateforme": renderPlatform,
     "/sujets": renderTopics,
@@ -77,11 +131,22 @@ function route() {
 
 function renderHome() {
   app.innerHTML = `
-    <section class="hero">
+    <section class="hero lively">
       <span class="pill">Produit hybride</span><span class="pill">Coffret + plateforme compagnon</span>
-      <h1>Le site de La Focale clarifie, projette, convertit puis accompagne.</h1>
-      <p>Le coffret physique reste le centre de gravité. Le digital prolonge l'expérience : progression, validations, retour régulier et fidélité durable.</p>
-      <div class="notice"><strong>Garde-fous :</strong> ne pas ressembler à un média, un LMS, un jeu, un dashboard SaaS ni un e-commerce standard.</div>
+      <h1>Un site plus vivant, mais toujours clair et premium.</h1>
+      <p>La Focale relie découverte, achat, activation, progression et fidélité dans une seule expérience continue.</p>
+      <div class="cta-row">
+        <a class="btn" href="#/architecture">Voir l'architecture complète</a>
+        <a class="btn secondary" href="#/offres">Voir les offres</a>
+      </div>
+    </section>
+
+    <section class="section ribbon-grid">
+      <article class="ribbon sale">Vente</article>
+      <article class="ribbon post">Post achat</article>
+      <article class="ribbon product">Vie du produit</article>
+      <article class="ribbon trust">Confiance</article>
+      <article class="ribbon legal">Légal</article>
     </section>
 
     <section class="section grid grid-3">
@@ -89,11 +154,25 @@ function renderHome() {
       ${card("Architecture", "<ul class='list'><li>Pages publiques de découverte.</li><li>Espace personnel comme passeport digital.</li><li>Pages sujet comme liaison entre les deux.</li></ul>")}
       ${card("Parcours", "<ul class='list'><li>Comprendre → se projeter → décider.</li><li>Activer après achat.</li><li>Revenir, progresser, collectionner.</li></ul>")}
     </section>
+  `;
+}
 
-    <section class="section card">
-      <h2>Pages clés prévues</h2>
-      <p>Accueil, Le coffret, La plateforme, Les sujets, Offres/S'abonner, Méthode, Espace personnel, pages sujet, pages secondaires de réassurance.</p>
-      <p class="small">Le socle implémente déjà la séparation public/personnel, des données simulées, et des composants réutilisables.</p>
+function renderArchitecture() {
+  const items = data.architecture
+    .map(
+      (block) =>
+        `<article class="arch-card ${block.key}">
+          <h3>${block.label}</h3>
+          <ul class="list">${block.points.map((point) => `<li>${point}</li>`).join("")}</ul>
+        </article>`
+    )
+    .join("");
+
+  app.innerHTML = `
+    <section class="card">
+      <h1>Architecture du site</h1>
+      <p>Voici une structure claire et colorée inspirée de ton schéma : du parcours de vente jusqu'aux pages de confiance et légales.</p>
+      <div class="arch-grid section">${items}</div>
     </section>
   `;
 }
@@ -104,8 +183,8 @@ function renderCoffret() {
       <h1>Le coffret : centre de gravité de l'expérience</h1>
       <p>Le coffret porte la découverte initiale, la matérialité et la valeur perçue premium. Le site confirme et amplifie cette valeur sans la déplacer.</p>
       <div class="grid grid-2 section">
-        ${card("Contenu du coffret", "<ul class='list'><li>Sujet géopolitique structuré</li><li>Supports de lecture/manipulation</li><li>Passeport et logique de validation</li></ul>")}
-        ${card("Rôle du digital", "<ul class='list'><li>Tracer le parcours</li><li>Valider étapes et progression</li><li>Installer un retour dans le temps</li></ul>")}
+        ${card("Contenu du coffret", "<ul class='list'><li>Sujet géopolitique structuré</li><li>Supports de lecture/manipulation</li><li>Passeport et logique de validation</li></ul>", "accent-soft")}
+        ${card("Rôle du digital", "<ul class='list'><li>Tracer le parcours</li><li>Valider étapes et progression</li><li>Installer un retour dans le temps</li></ul>", "accent-soft")}
       </div>
     </section>`;
 }
@@ -119,7 +198,6 @@ function renderPlatform() {
         ${card("Fonctionnalités MVP", "<ul class='list'><li>Profil/passeport</li><li>Suivi de progression</li><li>Validation d'étapes</li><li>Première mécanique de retour</li></ul>")}
         ${card("Engagement maîtrisé", "<ul class='list'><li>Badges et points symboliques</li><li>Défis hebdo courts</li><li>Pas de sur-gamification</li></ul>")}
       </div>
-      <div class="notice section">Le ton reste adulte, non scolaire, non militant, non technologique.</div>
     </section>`;
 }
 
@@ -140,7 +218,6 @@ function renderTopics() {
   app.innerHTML = `
     <section class="card">
       <h1>Les sujets : profondeur, collection, continuité</h1>
-      <p>Chaque sujet relie le coffret physique à un prolongement digital minimal mais concret : avancement, validation, activation.</p>
       <div class="grid grid-3 section">${topicCards}</div>
     </section>`;
 }
@@ -165,11 +242,10 @@ function renderOffers() {
       <h1>Offres / S'abonner</h1>
       <p>Page de conversion structurée : elle transforme l'intérêt en décision sans réduire le produit à un achat isolé.</p>
       <div class="grid grid-3 section">
-        ${card("Essentiel", "<p class='kpi'>39€</p><p>1 coffret + accès plateforme compagnon</p>")}
-        ${card("Continuité", "<p class='kpi'>109€</p><p>3 coffrets + suivi progression + défis hebdo</p>")}
-        ${card("Collection", "<p class='kpi'>199€</p><p>6 coffrets + logique de série et badges symboliques</p>")}
+        ${card("Essentiel", "<p class='kpi'>39€</p><p>1 coffret + accès plateforme compagnon</p>", "pricing")}
+        ${card("Continuité", "<p class='kpi'>109€</p><p>3 coffrets + suivi progression + défis hebdo</p>", "pricing")}
+        ${card("Collection", "<p class='kpi'>199€</p><p>6 coffrets + logique de série et badges symboliques</p>", "pricing")}
       </div>
-      <p class="small section">La conversion reste alignée avec la promesse : compréhension, progression, continuité.</p>
     </section>`;
 }
 
@@ -181,14 +257,13 @@ function renderMethod() {
         ${card("Principes UX", "<ul class='list'><li>Clarté avant spectaculaire</li><li>Sobriété engageante</li><li>Action visible sans agitation</li></ul>")}
         ${card("Posture de marque", "<ul class='list'><li>Compréhension plutôt que commentaire</li><li>Pédagogie adulte, jamais scolaire</li><li>Premium par la qualité d'ensemble</li></ul>")}
       </div>
-      <p class="notice section">Cohérence forte entre physique et digital : même promesse, même retenue, même exigence.</p>
     </section>`;
 }
 
 function renderPersonal() {
   const { user, weeklyChallenge } = data;
   app.innerHTML = `
-    <section class="hero">
+    <section class="hero profile-hero">
       <span class="pill">Passeport digital</span>
       <h1>Bonjour ${user.name}</h1>
       <p>ID Passeport : <strong>${user.passportId}</strong> · Coffret actif : <strong>${user.activeBox}</strong></p>
@@ -216,12 +291,11 @@ function renderRoadmap() {
         ${card("V1", "<ul class='list'><li>Profondeur des pages sujet</li><li>Collections enrichies</li><li>Badges mieux contextualisés</li><li>Réactivation plus fine</li></ul>")}
         ${card("V2", "<ul class='list'><li>Couches relationnelles maîtrisées</li><li>Mécaniques avancées (parrainage/récompenses)</li><li>Sans dénaturer la promesse centrale</li></ul>")}
       </div>
-      <p class="notice section">Règle : prioriser ce qui renforce la valeur centrale, pas ce qui ajoute du bruit.</p>
     </section>`;
 }
 
 function validateStep() {
-  alert("Étape validée. La progression est enregistrée dans votre passeport digital (simulation). ");
+  alert("Étape validée. La progression est enregistrée dans votre passeport digital (simulation).");
 }
 
 window.validateStep = validateStep;
